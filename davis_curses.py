@@ -46,11 +46,17 @@ class Curses_Wrapper:
 
     def print(self, text, window_coords):
         '''Adds text to a window at (window_coords) (2-tuple)'''
-        self.displays[window_coords[0]][window_coords[1]].addstr(text)
+        try:
+            self.displays[window_coords[0]][window_coords[1]].addstr(text)
+        except curses.error:
+            pass
 
     def set_text(self, text, window_coords):
-        self.displays[window_coords[0]][window_coords[1]].erase()
-        self.displays[window_coords[0]][window_coords[1]].addstr(text)
+        try:
+            self.displays[window_coords[0]][window_coords[1]].erase()
+            self.displays[window_coords[0]][window_coords[1]].addstr(text)
+        except curses.error:
+            pass
 
     def getkey(self):
         while(True):
