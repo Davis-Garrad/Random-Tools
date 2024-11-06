@@ -111,6 +111,9 @@ class Curses_Wrapper:
         return written
 
 global wrapper
+global daviscurses_args
+
+daviscurses_args = { 'autoflush': True }
 
 def set_screensize(dims):
     global wrapper
@@ -126,7 +129,9 @@ def print(s, *args, **kwargs):
                 coords[1] = 0
         else:
             coords = (0,0)
-        flush=False if ('flush' in kwargs and not(kwargs['flush'])) else True
+        flush=daviscurses_args['autoflush']
+        if('flush' in kwargs):
+            flush=False if (not(kwargs['flush'])) else True
         wrapper.print(str(s), coords)
         for si in args:
             wrapper.print(' ' + str(si), coords)

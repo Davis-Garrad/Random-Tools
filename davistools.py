@@ -1,6 +1,12 @@
 import os
 
+davistools_elapsed_time = 0
+
 def bar_string(percent, num_ticks):
+    global davistools_elapsed_time
+    if(percent == 0):
+        davistools_elapsed_time = 0
+
     barstr = ''
     num_loaded = int(percent/100.0 * num_ticks) # integer rounding
     num_unloaded = num_ticks - num_loaded
@@ -17,6 +23,7 @@ def bar_string(percent, num_ticks):
     return barstr
 
 def progress_statement(iteration, datalen, dt=0.0, bar=True, label=''):
+    global davistools_elapsed_time
     percent = (iteration+1)/datalen * 100.0
     statement = 'Iteration {}/{} complete ({:.1f}%)'.format(iteration+1, datalen, percent)
     
@@ -30,8 +37,10 @@ def progress_statement(iteration, datalen, dt=0.0, bar=True, label=''):
 
     dtstring = ''
     if(dt != 0.0):
-        eta = dt * (datalen-iteration-1)
-        dtstring = 'Took {:.1f}s (ETA: {:.1f}s)'.format(dt, eta)
+        #eta = dt * (datalen-iteration-1)
+        davistools_elapsed_time += dt
+        eta = (1-percent/100) * (davistools_elapsed_time/(percent/100))
+        dtstring = 'Time {:.1f}s (ETA: {:.1f}s)'.format(davistools_elapsed_time, eta)
 
     if(label != ''):
         label += ': '
@@ -41,6 +50,7 @@ def progress_statement(iteration, datalen, dt=0.0, bar=True, label=''):
         print('')
 
 def progress_statement_range(cur_val, data, bar=True, label='', dt=0.0):
+    global davistools_elapsed_time
     percent = (cur_val-data[0])/(data[-1]-data[0]) * 100.0
     statement = 'Process {:.1f}% complete'.format(percent)
     
@@ -52,14 +62,16 @@ def progress_statement_range(cur_val, data, bar=True, label='', dt=0.0):
     if(bar == True):
         barstr = bar_string(percent, end_section-2)
 
-    dtstr = ''
+    dtstring = ''
     if(dt != 0.0):
-        eta = dt * (100.0-percent)/100.0 * len(data)
-        dtstr = 'Took {:.1f}s (ETA: {:.1f}s)'.format(dt, eta)
+        davistools_elapsed_time += dt
+        aug_perc = percent/100 + 1/len(data)
+        eta = (1-aug_perc) * (davistools_elapsed_time/(aug_perc))
+        dtstring = 'Time {:.1f}s (ETA: {:.1f}s)'.format(davistools_elapsed_time, eta)
 
     if(label != ''):
         label += ': '
-    print('\r'.format(''),'{:<{begin}}{:^{mid}}{:>}'.format(label + statement, dtstr, barstr, begin=begin_section, mid=mid_section), end='', flush=True)
+    print('\r'.format(''),'{:<{begin}}{:^{mid}}{:>}'.format(label + statement, dtstring, barstr, begin=begin_section, mid=mid_section), end='', flush=True)
 
     if(cur_val == data[-1]):
         print('') # newline
