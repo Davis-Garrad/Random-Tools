@@ -9,7 +9,7 @@ class Quantity:
     def quad(self, a, b):
         return np.sqrt(np.square(a) + np.square(b))
     def rel_quad(self, ada, bdb):
-        return np.sqrt(np.square(ada.x/ada.dx) + np.square(bdb.x/bdb.dx))
+        return np.sqrt(np.square(ada.dx/ada.x) + np.square(bdb.dx/bdb.x))
 
     def __neg__(self):
         v = -self.x
