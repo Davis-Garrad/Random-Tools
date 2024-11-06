@@ -120,6 +120,7 @@ def set_screensize(dims):
     wrapper = Curses_Wrapper(curses.initscr(), dims)
 
 def print(s, *args, **kwargs):
+    global daviscurses_args
     try:
         if('window_coords' in kwargs):
             coords = kwargs['window_coords']
@@ -152,3 +153,9 @@ def input(*args, **kwargs):
     return wrapper.input()
 
 set_screensize((1,1))
+
+daviscurses_args = { 'autoflush': True }
+
+def set_autoflush(b):
+    global daviscurses_args
+    daviscurses_args['autoflush'] = b
