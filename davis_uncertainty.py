@@ -74,6 +74,8 @@ class Quantity:
     def __repr__(self):
         x = self.x
         dx = self.dx
+        if(dx == 0):
+            return f'{x}±{dx}'
         order = int(np.ceil(np.abs(np.log10(dx))) * np.sign(np.log10(dx)))
         order_a = np.abs(order)
         if(order < 0):
