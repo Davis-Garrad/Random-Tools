@@ -76,6 +76,7 @@ class Quantity:
         dx = self.dx
         if(dx == 0):
             return f'{x}±{dx}'
+        print(dx)
         order = int(np.ceil(np.abs(np.log10(dx))) * np.sign(np.log10(dx)))
         order_a = np.abs(order)
         if(order < 0):
