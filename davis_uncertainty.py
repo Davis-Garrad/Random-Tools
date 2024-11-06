@@ -9,6 +9,13 @@ class Quantity:
     def quad(self, a, b):
         return np.sqrt(np.square(a) + np.square(b))
     def rel_quad(self, ada, bdb):
+        if(ada.x == 0):
+            if(bdb.x == 0):
+                return 0
+            else:
+                return bdb.dx/bdb.x
+        elif(bdb.x == 0):
+            return ada.dx/ada.x
         return np.sqrt(np.square(ada.dx/ada.x) + np.square(bdb.dx/bdb.x))
 
     def __neg__(self):
@@ -76,7 +83,6 @@ class Quantity:
         dx = self.dx
         if(dx == 0):
             return f'{x}±{dx}'
-        print(dx)
         order = int(np.ceil(np.abs(np.log10(dx))) * np.sign(np.log10(dx)))
         order_a = np.abs(order)
         if(order < 0):
