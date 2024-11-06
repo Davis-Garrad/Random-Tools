@@ -41,7 +41,7 @@ class Quantity:
     def __mul__(self, other):
         if(type(other) == Quantity):
             v = self.x * other.x
-            u = v * self.rel_quad(self, other)
+            u = np.abs(v) * self.rel_quad(self, other)
         else:
             v = self.x * other
             u = self.dx
@@ -52,7 +52,7 @@ class Quantity:
     def __truediv__(self, other):
         if(type(other) == Quantity):
             v = self.x/other.x
-            u = v * self.rel_quad(self, other)
+            u = np.abs(v) * self.rel_quad(self, other)
         else:
             v = self.x / other
             u = self.dx
@@ -63,7 +63,7 @@ class Quantity:
             u = v * self.rel_quad(self, other)
         else:
             v = other/self.x
-            u = self.dx * other / np.square(self.x)
+            u = self.dx * np.abs(other) / np.square(self.x)
         return Quantity(u, v)
 
     def __pow__(self, n):
