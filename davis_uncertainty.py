@@ -77,6 +77,6 @@ class Quantity:
         order = int(np.ceil(np.abs(np.log10(dx))) * np.sign(np.log10(dx)))
         order_a = np.abs(order)
         if(order < 0):
-            return ("{:."+str(order_a)+"f}±{:."+str(order_a)+"f}").format(np.round(x, order_a), np.round(x, order_a))
+            return ("{:."+str(order_a)+"f}±{:."+str(order_a)+"f}").format(np.round(x, order_a), np.round(dx, order_a))
         else:
             return ("{:"+str(order_a)+"f}±{:"+str(order_a)+"f}").format(x, dx)
