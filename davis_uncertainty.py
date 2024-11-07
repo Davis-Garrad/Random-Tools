@@ -58,8 +58,12 @@ class Quantity:
 
     def __truediv__(self, other):
         if(type(other) == Quantity):
-            v = self.x/other.x
-            u = np.abs(v) * self.rel_quad(self, other)
+            if(other.x == 0):
+                v = np.inf
+                u = 0
+            else:
+                v = self.x/other.x
+                u = np.abs(v) * self.rel_quad(self, other)
         else:
             v = self.x / other
             u = self.dx
