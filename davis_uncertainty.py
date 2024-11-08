@@ -1,4 +1,5 @@
 import numpy as np
+import scipy as sp
 
 class Quantity:
     def __init__(self, value, uncertainty):
@@ -93,3 +94,9 @@ class Quantity:
             return ("{:."+str(order_a)+"f}±{:."+str(order_a)+"f}").format(np.round(x, order_a), np.round(dx, order_a))
         else:
             return ("{:"+str(order_a)+"f}±{:"+str(order_a)+"f}").format(x, dx)
+
+    def ci(self, p):
+        '''Gives a p*100% confidence interval, assuming normality'''
+        c = sp.stats.normal().ppf((1.0+p)/2.0)
+        return (self.x - self.dx * c, self.x + self.dx * c)
+    
