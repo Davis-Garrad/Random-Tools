@@ -21,7 +21,7 @@ def init_plot(size=(1,1)):
     global __dc_options
     fig, ax = plt.subplots(size[0], size[1])
     fig.set_tight_layout(True)
-    fig.set_figwidth(__dc_options['plot_size'][0] * size[0])
-    fig.set_figheight(__dc_options['plot_size'][1] * size[1])
+    fig.set_figwidth(__dc_options['plot_size'][0])# * size[0])
+    fig.set_figheight(__dc_options['plot_size'][1])# * size[1])
     return fig, ax
 
