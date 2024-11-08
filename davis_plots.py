@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 default_options = {
         'font_size': 16, # pt
-        'plot_size': (4.8, 4.8 * 3/4),
+        'plot_size': (6.4, 4.8),
         'line_width': 2.5,
         'xtick_size': 13.5,
         'ytick_size': 13.5,
