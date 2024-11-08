@@ -88,9 +88,9 @@ class Quantity:
         dx = self.dx
         if(dx == 0):
             return f'{x}±{dx}'
-        print(order)
         order = int(np.ceil(np.abs(np.log10(dx))) * np.sign(np.log10(dx)))
         order_a = np.abs(order)
+        print(order)
         if(order < 0):
             return ("{:."+str(order_a)+"f}±{:."+str(order_a)+"f}").format(np.round(x, order_a), np.round(dx, order_a))
         else:
