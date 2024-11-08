@@ -24,6 +24,6 @@ def init_plot(size=(1,1), square=False):
     fig.set_figwidth(__dc_options['plot_size'][0])# * size[0])
     fig.set_figheight(__dc_options['plot_size'][1])# * size[1])
     if(square):
-        fig.set_figwidth(__dc_options['plot_size'][0])# * size[0])
+        fig.set_figheight(__dc_options['plot_size'][0])# * size[0])
     return fig, ax
 
