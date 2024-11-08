@@ -97,6 +97,6 @@ class Quantity:
 
     def ci(self, p):
         '''Gives a p*100% confidence interval, assuming normality'''
-        c = sp.stats.normal().ppf((1.0+p)/2.0)
+        c = sp.stats.norm().ppf((1.0+p)/2.0)
         return (self.x - self.dx * c, self.x + self.dx * c)
     
