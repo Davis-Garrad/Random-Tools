@@ -17,11 +17,13 @@ def init_plots_for_paper(options=default_options):
     mpl.rcParams.update({'font.size': options['font_size'], 'figure.figsize': options['plot_size'], 'lines.linewidth': options['line_width'], 'xtick.labelsize': options['xtick_size'], 'ytick.labelsize': options['ytick_size'], })
     mpl.interactive(False)
 
-def init_plot(size=(1,1)):
+def init_plot(size=(1,1), square=False):
     global __dc_options
     fig, ax = plt.subplots(size[0], size[1])
     fig.set_tight_layout(True)
     fig.set_figwidth(__dc_options['plot_size'][0])# * size[0])
     fig.set_figheight(__dc_options['plot_size'][1])# * size[1])
+    if(square):
+        fig.set_figwidth(__dc_options['plot_size'][0])# * size[0])
     return fig, ax
 
