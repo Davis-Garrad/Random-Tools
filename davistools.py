@@ -44,7 +44,8 @@ def progress_statement(iteration, datalen, dt=0.0, bar=True, label=''):
 
     if(label != ''):
         label += ': '
-    print('\r'.format(''),'{:<{begin}}{:^{mid}}{:>}'.format(label + statement, dtstring, barstr, begin=begin_section, mid=mid_section), end='', flush=True)
+    print('\r'.format(''), end='', flush=True)
+    print('{:<{begin}}{:^{mid}}{:>}'.format(label + statement, dtstring, barstr, begin=begin_section, mid=mid_section), end='', flush=True)
 
     if(iteration == datalen-1):
         print('')
@@ -71,7 +72,8 @@ def progress_statement_range(cur_val, data, bar=True, label='', dt=0.0):
 
     if(label != ''):
         label += ': '
-    print('\r'.format(''),'{:<{begin}}{:^{mid}}{:>}'.format(label + statement, dtstring, barstr, begin=begin_section, mid=mid_section), end='', flush=True)
+    print('\r'.format(''), end='', flush=True)
+    print('{:<{begin}}{:^{mid}}{:>}'.format(label + statement, dtstring, barstr, begin=begin_section, mid=mid_section), end='', flush=True)
 
     if(cur_val == data[-1]):
         print('') # newline
