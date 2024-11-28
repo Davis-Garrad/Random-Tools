@@ -29,7 +29,7 @@ def progress_statement(iteration, datalen, dt=0.0, bar=True, label=''):
     
     begin_section = 30
     mid_section = 50
-    end_section = os.get_terminal_size().columns - begin_section - mid_section - 1
+    end_section = os.get_terminal_size().columns - begin_section - mid_section - 5
 
     barstr = ''
     if(bar == True):
