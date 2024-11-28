@@ -44,7 +44,7 @@ def progress_statement(iteration, datalen, dt=0.0, bar=True, label=''):
 
     if(label != ''):
         label += ': '
-    print('\r'.format(''), end='', flush=True)
+    print('\r', end='', flush=True)
     print('{:<{begin}}{:^{mid}}{:>}'.format(label + statement, dtstring, barstr, begin=begin_section, mid=mid_section), end='', flush=True)
 
     if(iteration == datalen-1):
