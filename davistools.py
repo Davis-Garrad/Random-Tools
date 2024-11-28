@@ -27,9 +27,9 @@ def progress_statement(iteration, datalen, dt=0.0, bar=True, label=''):
     percent = (iteration+1)/datalen * 100.0
     statement = 'Iteration {}/{} complete ({:.1f}%)'.format(iteration+1, datalen, percent)
     
-    begin_section = 30
+    begin_section = 40
     mid_section = 50
-    end_section = os.get_terminal_size().columns - begin_section - mid_section - 5
+    end_section = os.get_terminal_size().columns - begin_section - mid_section - 1
 
     barstr = ''
     if(bar == True):
