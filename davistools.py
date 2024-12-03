@@ -24,6 +24,9 @@ def bar_string(percent, num_ticks):
 
 def progress_statement(iteration, datalen, dt=0.0, bar=True, label=''):
     global davistools_elapsed_time
+    if(iteration == 0):
+        davistools_elapsed_time = 0
+
     percent = (iteration+1)/datalen * 100.0
     statement = 'Iteration {}/{} complete ({:.1f}%)'.format(iteration+1, datalen, percent)
     
